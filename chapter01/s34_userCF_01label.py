@@ -28,7 +28,9 @@ def get_recommendation_by_userCF(user_sims, user_o_set):
     :return: 每个用户的推荐列表 {用户1：[物品1，物品2，物品3]}
     """
     recommendations = collections.defaultdict(set)
+    # 遍历每个用户
     for u in user_sims:
+        # 遍历每个用户的近邻用户
         for sim_u in user_sims[u]:
             # 将近邻用户喜爱的电影 与自己观看的电影去重后推荐给自己
             recommendations[u] |= (user_o_set[sim_u] - user_o_set[u])
